@@ -1,0 +1,13 @@
+/* Custom styles can be added here if needed */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.plate {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    font-weight: bold;
+}
