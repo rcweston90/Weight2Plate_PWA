@@ -46,8 +46,10 @@
             <p id="remainingWeightPerSide" class="text-md"></p>
         </div>
         <div id="error" class="mt-6 text-center text-red-500 hidden"></div>
+        <canvas id="barbellCanvas" class="mt-6 mx-auto" width="400" height="200"></canvas>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/barbell-visualization.js') }}"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {

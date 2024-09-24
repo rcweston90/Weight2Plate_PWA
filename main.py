@@ -14,7 +14,8 @@ def calculate_drop_set(final_side_weight, bar_weight, percent_drop, unit):
         'drop_side_weight': round(drop_side_weight, 2),
         'remaining_weight': round(remaining_weight, 2),
         'remaining_weight_per_side': round(remaining_weight_per_side, 2),
-        'unit': unit
+        'unit': unit,
+        'bar_weight': bar_weight  # Add bar_weight to the response
     }
 
 @app.route('/')

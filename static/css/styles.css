@@ -11,3 +11,9 @@ body {
     border-radius: 5px;
     font-weight: bold;
 }
+
+#barbellCanvas {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 0;
+}

@@ -5,6 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitRadios = document.querySelectorAll('input[name="unit"]');
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightInput = document.getElementById('barWeight');
+    const canvas = document.getElementById('barbellCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = canvas.clientWidth;
+        canvas.height = canvas.clientHeight;
+        if (result.classList.contains('hidden')) return;
+        const data = JSON.parse(result.dataset.calculationResult);
+        visualizeBarbell(data);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
     unitRadios.forEach(radio => {
         radio.addEventListener('change', () => {
@@ -42,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             displayResult(data);
+            visualizeBarbell(data);
         } catch (err) {
             displayError(err.message);
         }
@@ -50,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayResult(data) {
         error.classList.add('hidden');
         result.classList.remove('hidden');
+        result.dataset.calculationResult = JSON.stringify(data);
         document.getElementById('finalSetWeight').textContent = `Final Set Weight: ${data.final_set_weight} ${data.unit}`;
         document.getElementById('dropSideWeight').textContent = `Drop Side Weight: ${data.drop_side_weight} ${data.unit}`;
         document.getElementById('remainingWeight').textContent = `Remaining Weight: ${data.remaining_weight} ${data.unit}`;
@@ -60,5 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
         result.classList.add('hidden');
         error.classList.remove('hidden');
         error.textContent = message;
+    }
+
+    function visualizeBarbell(data) {
+        const weights = calculatePlates(data.remaining_weight_per_side, data.unit);
+        drawLoadedBarbell(ctx, canvas.width, canvas.height, weights, data.unit);
+    }
+
+    function calculatePlates(weight, unit) {
+        const availablePlates = unit === 'lbs' ? [45, 35, 25, 10, 5, 2.5] : [20, 15, 10, 5, 2.5, 1.25];
+        const plates = [];
+        let remainingWeight = weight;
+
+        for (const plate of availablePlates) {
+            while (remainingWeight >= plate) {
+                plates.push(plate);
+                remainingWeight -= plate;
+            }
+        }
+
+        return plates;
     }
 });
