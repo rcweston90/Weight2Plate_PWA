@@ -46,7 +46,15 @@
             <p id="remainingWeightPerSide" class="text-md"></p>
         </div>
         <div id="error" class="mt-6 text-center text-red-500 hidden"></div>
-        <canvas id="barbellCanvas" class="mt-6 mx-auto" width="400" height="200"></canvas>
+        <canvas id="barbellCanvas" class="mt-6 mx-auto" width="400" height="300"></canvas>
+        <div id="visualizationExplanation" class="mt-4 text-sm text-gray-600">
+            <p><strong>How to read the barbell visualization:</strong></p>
+            <p>1. The gray bar in the center represents the barbell.</p>
+            <p>2. Colored rectangles on each side represent weight plates.</p>
+            <p>3. The size of each rectangle is proportional to the plate's weight.</p>
+            <p>4. The legend on the top-left shows the color coding for different plate weights.</p>
+            <p>5. The visualization shows the plates needed for one side of the barbell after the drop set calculation.</p>
+        </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/barbell-visualization.js') }}"></script>
