@@ -14,25 +14,21 @@
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Weight2Plate Calculator</h1>
         <form id="calculatorForm" class="space-y-4">
-            <div class="flex justify-center mb-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="unit" value="lbs" checked class="form-radio text-blue-600">
-                    <span class="ml-2">lbs</span>
-                </label>
-                <label class="inline-flex items-center ml-6">
-                    <input type="radio" name="unit" value="kg" class="form-radio text-blue-600">
-                    <span class="ml-2">kg</span>
-                </label>
+            <div class="input-container">
+                <div class="flex justify-center mb-4">
+                    <button type="button" id="lbsButton" class="unit-button selected mr-2 px-4 py-2 rounded-md">lbs</button>
+                    <button type="button" id="kgButton" class="unit-button ml-2 px-4 py-2 rounded-md">kg</button>
+                </div>
             </div>
-            <div>
+            <div class="input-container">
                 <label for="barWeight" class="block text-sm font-medium text-gray-700 mb-2">Bar Weight (<span class="unit">lbs</span>)</label>
                 <div id="barWeightTiles" class="grid grid-cols-3 gap-2"></div>
             </div>
-            <div>
-                <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight (<span class="unit">lbs</span>)</label>
-                <input type="number" id="finalSideWeight" name="finalSideWeight" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            <div class="input-container">
+                <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight: <span id="finalSideWeightValue">45</span> <span class="unit">lbs</span></label>
+                <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" value="45" step="1" class="mt-1 block w-full">
             </div>
-            <div>
+            <div class="input-container">
                 <label for="percentDrop" class="block text-sm font-medium text-gray-700">Percent Drop: <span id="percentDropValue">10</span>%</label>
                 <input type="range" id="percentDrop" name="percentDrop" min="0" max="100" value="10" class="mt-1 block w-full">
             </div>
