@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.dataset.weight = option[unit];
             tile.addEventListener('click', () => selectBarWeight(tile));
             barWeightTiles.appendChild(tile);
+            console.log(`Created tile: ${tile.textContent}`);
         });
         selectBarWeight(barWeightTiles.children[0]);
     }
