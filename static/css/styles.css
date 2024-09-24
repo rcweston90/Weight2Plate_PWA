@@ -51,3 +51,7 @@ body {
     color: white;
     border-color: #3b82f6;
 }
+
+.input-container {
+    margin-bottom: 1.5rem;
+}
