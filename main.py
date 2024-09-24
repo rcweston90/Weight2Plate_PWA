@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
+import os
 
 app = Flask(__name__)
 
@@ -37,6 +38,14 @@ def calculate():
         return jsonify(result)
     except (ValueError, KeyError) as e:
         return jsonify({'error': str(e)}), 400
+
+@app.route('/manifest.json')
+def serve_manifest():
+    return send_from_directory('static', 'manifest.json')
+
+@app.route('/service-worker.js')
+def serve_service_worker():
+    return send_from_directory('static/js', 'service-worker.js')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
