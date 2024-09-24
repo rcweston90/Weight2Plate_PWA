@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const barWeightTiles = document.getElementById('barWeightTiles');
     const percentDropSlider = document.getElementById('percentDrop');
     const percentDropValue = document.getElementById('percentDropValue');
+    const finalSideWeightSlider = document.getElementById('finalSideWeight');
+    const finalSideWeightValue = document.getElementById('finalSideWeightValue');
 
     const barWeightOptions = [
         { lbs: 45, kg: 20 },
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 unitButtons.forEach(btn => btn.classList.toggle('selected'));
                 unitLabels.forEach(label => label.textContent = selectedUnit);
                 createBarWeightTiles(selectedUnit);
+                updateFinalSideWeightSlider();
             }
         });
     });
@@ -58,11 +61,23 @@ document.addEventListener('DOMContentLoaded', () => {
         percentDropValue.textContent = percentDropSlider.value;
     });
 
+    finalSideWeightSlider.addEventListener('input', () => {
+        finalSideWeightValue.textContent = finalSideWeightSlider.value;
+    });
+
+    function updateFinalSideWeightSlider() {
+        const maxWeight = selectedUnit === 'lbs' ? 500 : 225;
+        finalSideWeightSlider.max = maxWeight;
+        finalSideWeightSlider.value = Math.min(finalSideWeightSlider.value, maxWeight);
+        finalSideWeightValue.textContent = finalSideWeightSlider.value;
+    }
+
     createBarWeightTiles('lbs');
+    updateFinalSideWeightSlider();
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const finalSideWeight = document.getElementById('finalSideWeight').value;
+        const finalSideWeight = finalSideWeightSlider.value;
         const percentDrop = percentDropSlider.value;
 
         console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
