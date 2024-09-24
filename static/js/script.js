@@ -4,33 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const error = document.getElementById('error');
     const unitRadios = document.querySelectorAll('input[name="unit"]');
     const unitLabels = document.querySelectorAll('.unit');
-    const barWeightSelect = document.getElementById('barWeight');
+    const barWeightTiles = document.getElementById('barWeightTiles');
     const percentDropSlider = document.getElementById('percentDrop');
     const percentDropValue = document.getElementById('percentDropValue');
 
-    function updateBarWeightOptions(unit) {
-        const options = [
-            { lbs: 45, kg: 20.4 },
-            { lbs: 35, kg: 15.9 },
-            { lbs: 33, kg: 15 },
-            { lbs: 25, kg: 11.3 },
-            { lbs: 15, kg: 6.8 }
-        ];
+    const barWeightOptions = [
+        { lbs: 45, kg: 20 },
+        { lbs: 35, kg: 15 },
+        { lbs: 33, kg: 15 },
+        { lbs: 25, kg: 10 },
+        { lbs: 15, kg: 7 }
+    ];
 
-        barWeightSelect.innerHTML = '';
-        options.forEach(option => {
-            const optionElement = document.createElement('option');
-            optionElement.value = option[unit];
-            optionElement.textContent = `${option[unit]} ${unit} (${option[unit === 'lbs' ? 'kg' : 'lbs']} ${unit === 'lbs' ? 'kg' : 'lbs'})`;
-            barWeightSelect.appendChild(optionElement);
+    let selectedBarWeight = barWeightOptions[0].lbs;
+
+    function createBarWeightTiles(unit) {
+        barWeightTiles.innerHTML = '';
+        barWeightOptions.forEach(option => {
+            const tile = document.createElement('div');
+            tile.className = 'bar-weight-tile';
+            tile.textContent = `${option[unit]} ${unit}`;
+            tile.dataset.weight = option[unit];
+            tile.addEventListener('click', () => selectBarWeight(tile));
+            barWeightTiles.appendChild(tile);
         });
+        selectBarWeight(barWeightTiles.children[0]);
+    }
+
+    function selectBarWeight(tile) {
+        barWeightTiles.querySelectorAll('.bar-weight-tile').forEach(t => t.classList.remove('selected'));
+        tile.classList.add('selected');
+        selectedBarWeight = parseFloat(tile.dataset.weight);
     }
 
     unitRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             const selectedUnit = radio.value;
             unitLabels.forEach(label => label.textContent = selectedUnit);
-            updateBarWeightOptions(selectedUnit);
+            createBarWeightTiles(selectedUnit);
         });
     });
 
@@ -38,16 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         percentDropValue.textContent = percentDropSlider.value;
     });
 
-    updateBarWeightOptions('lbs');
+    createBarWeightTiles('lbs');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const barWeight = barWeightSelect.value;
         const finalSideWeight = document.getElementById('finalSideWeight').value;
         const percentDrop = percentDropSlider.value;
         const unit = document.querySelector('input[name="unit"]:checked').value;
 
-        if (!barWeight || !finalSideWeight || !percentDrop) {
+        if (!selectedBarWeight || !finalSideWeight || !percentDrop) {
             displayError('All fields are required');
             return;
         }
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ barWeight, finalSideWeight, percentDrop, unit }),
+                body: JSON.stringify({ barWeight: selectedBarWeight, finalSideWeight, percentDrop, unit }),
             });
 
             const data = await response.json();
