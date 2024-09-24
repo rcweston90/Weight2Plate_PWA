@@ -4,21 +4,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const error = document.getElementById('error');
     const unitRadios = document.querySelectorAll('input[name="unit"]');
     const unitLabels = document.querySelectorAll('.unit');
-    const barWeightInput = document.getElementById('barWeight');
+    const barWeightSelect = document.getElementById('barWeight');
+    const percentDropSlider = document.getElementById('percentDrop');
+    const percentDropValue = document.getElementById('percentDropValue');
+
+    function updateBarWeightOptions(unit) {
+        const options = [
+            { lbs: 45, kg: 20.4 },
+            { lbs: 35, kg: 15.9 },
+            { lbs: 33, kg: 15 },
+            { lbs: 25, kg: 11.3 },
+            { lbs: 15, kg: 6.8 }
+        ];
+
+        barWeightSelect.innerHTML = '';
+        options.forEach(option => {
+            const optionElement = document.createElement('option');
+            optionElement.value = option[unit];
+            optionElement.textContent = `${option[unit]} ${unit} (${option[unit === 'lbs' ? 'kg' : 'lbs']} ${unit === 'lbs' ? 'kg' : 'lbs'})`;
+            barWeightSelect.appendChild(optionElement);
+        });
+    }
 
     unitRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             const selectedUnit = radio.value;
             unitLabels.forEach(label => label.textContent = selectedUnit);
-            barWeightInput.value = selectedUnit === 'lbs' ? '45' : '20';
+            updateBarWeightOptions(selectedUnit);
         });
     });
 
+    percentDropSlider.addEventListener('input', () => {
+        percentDropValue.textContent = percentDropSlider.value;
+    });
+
+    updateBarWeightOptions('lbs');
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const barWeight = document.getElementById('barWeight').value;
+        const barWeight = barWeightSelect.value;
         const finalSideWeight = document.getElementById('finalSideWeight').value;
-        const percentDrop = document.getElementById('percentDrop').value;
+        const percentDrop = percentDropSlider.value;
         const unit = document.querySelector('input[name="unit"]:checked').value;
 
         if (!barWeight || !finalSideWeight || !percentDrop) {
