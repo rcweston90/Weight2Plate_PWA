@@ -33,3 +33,21 @@ body {
     color: white;
     border-color: #3b82f6;
 }
+
+.unit-button {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 2px solid #e5e7eb;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.unit-button:hover {
+    background-color: #e5e7eb;
+}
+
+.unit-button.selected {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}

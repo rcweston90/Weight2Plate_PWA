@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('calculatorForm');
     const result = document.getElementById('result');
     const error = document.getElementById('error');
-    const unitRadios = document.querySelectorAll('input[name="unit"]');
+    const unitButtons = document.querySelectorAll('.unit-button');
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightTiles = document.getElementById('barWeightTiles');
     const percentDropSlider = document.getElementById('percentDrop');
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let selectedBarWeight = barWeightOptions[0].lbs;
+    let selectedUnit = 'lbs';
 
     function createBarWeightTiles(unit) {
         console.log(`Creating bar weight tiles for unit: ${unit}`);
@@ -41,12 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Selected bar weight: ${selectedBarWeight}`);
     }
 
-    unitRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            const selectedUnit = radio.value;
-            console.log(`Unit changed to: ${selectedUnit}`);
-            unitLabels.forEach(label => label.textContent = selectedUnit);
-            createBarWeightTiles(selectedUnit);
+    unitButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const newUnit = button.textContent.toLowerCase();
+            if (newUnit !== selectedUnit) {
+                selectedUnit = newUnit;
+                unitButtons.forEach(btn => btn.classList.toggle('selected'));
+                unitLabels.forEach(label => label.textContent = selectedUnit);
+                createBarWeightTiles(selectedUnit);
+            }
         });
     });
 
@@ -60,9 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const finalSideWeight = document.getElementById('finalSideWeight').value;
         const percentDrop = percentDropSlider.value;
-        const unit = document.querySelector('input[name="unit"]:checked').value;
 
-        console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${unit}`);
+        console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
 
         if (!selectedBarWeight || !finalSideWeight || !percentDrop) {
             displayError('All fields are required');
@@ -75,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ barWeight: selectedBarWeight, finalSideWeight, percentDrop, unit }),
+                body: JSON.stringify({ barWeight: selectedBarWeight, finalSideWeight, percentDrop, unit: selectedUnit }),
             });
 
             const data = await response.json();

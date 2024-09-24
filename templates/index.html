@@ -15,14 +15,8 @@
         <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Weight2Plate Calculator</h1>
         <form id="calculatorForm" class="space-y-4">
             <div class="flex justify-center mb-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="unit" value="lbs" checked class="form-radio text-blue-600">
-                    <span class="ml-2">lbs</span>
-                </label>
-                <label class="inline-flex items-center ml-6">
-                    <input type="radio" name="unit" value="kg" class="form-radio text-blue-600">
-                    <span class="ml-2">kg</span>
-                </label>
+                <button type="button" id="lbsButton" class="unit-button selected mr-2 px-4 py-2 rounded-md">lbs</button>
+                <button type="button" id="kgButton" class="unit-button ml-2 px-4 py-2 rounded-md">kg</button>
             </div>
             <div>
                 <label for="barWeight" class="block text-sm font-medium text-gray-700 mb-2">Bar Weight (<span class="unit">lbs</span>)</label>
