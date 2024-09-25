@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createBarWeightTiles();
     updateFinalSideWeightSlider();
 
-    form.addEventListener('submit', async (e) => {
+    document.querySelector('.sticky-buttons button[type="submit"]').addEventListener('click', async (e) => {
         e.preventDefault();
         const finalSideWeight = finalSideWeightSlider.value;
         const percentDrop = Math.abs($("#slider2").roundSlider("getValue"));
