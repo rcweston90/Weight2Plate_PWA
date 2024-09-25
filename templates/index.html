@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weight2Plate Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
@@ -23,14 +24,14 @@
     </nav>
     <div class="flex-grow flex items-center justify-center p-4">
         <div class="w-full max-w-md space-y-4">
-            <form id="calculatorForm" class="space-y-4">
-                <div class="card">
-                    <div class="section-wrapper">
-                        <div class="subheading-wrapper">
+            <form id="calculatorForm" class="ui three stackable cards">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
                             <span class="material-icons">looks_one</span>
-                            <h2 class="subheading font-bold">Enter Plate Weight</h2>
+                            Enter Plate Weight
                         </div>
-                        <div class="mt-2">
+                        <div class="description">
                             <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight</label>
                             <div class="mt-1 relative rounded-md shadow-sm">
                                 <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" step="1" value="45" class="w-full">
@@ -45,29 +46,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="section-wrapper">
-                        <div class="subheading-wrapper">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
                             <span class="material-icons">looks_two</span>
-                            <h2 class="subheading font-bold">Bar Weight</h2>
+                            Bar Weight
                         </div>
-                        <div id="barWeightTiles" class="mt-2 grid grid-cols-3 gap-2"></div>
+                        <div class="description">
+                            <div id="barWeightTiles" class="mt-2 grid grid-cols-3 gap-2"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="section-wrapper">
-                        <div class="subheading-wrapper">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">
                             <span class="material-icons">looks_3</span>
-                            <h2 class="subheading font-bold">Percent Drop</h2>
+                            Percent Drop
                         </div>
-                        <div id="slider2" class="mt-2"></div>
+                        <div class="description">
+                            <div id="slider2" class="mt-2"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-4 flex justify-center space-x-4">
-                    <button type="button" class="unit-button px-4 py-2 bg-blue-500 text-white rounded-full selected">LB</button>
-                    <button type="button" class="unit-button px-4 py-2 bg-gray-300 text-gray-700 rounded-full">KG</button>
                 </div>
             </form>
+            <div class="mt-4 flex justify-center space-x-4">
+                <button type="button" class="unit-button px-4 py-2 bg-blue-500 text-white rounded-full selected">LB</button>
+                <button type="button" class="unit-button px-4 py-2 bg-gray-300 text-gray-700 rounded-full">KG</button>
+            </div>
             <div id="result" class="mt-6 text-center hidden">
                 <h3 class="text-lg font-medium text-gray-900">Results</h3>
                 <p id="finalSetWeight" class="mt-2 text-sm text-gray-500"></p>

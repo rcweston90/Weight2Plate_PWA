@@ -31,29 +31,19 @@ nav h1 {
 }
 
 /* Card styles */
-.card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+.ui.card {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
 }
 
-/* Section wrapper styles */
-.section-wrapper {
-    padding: 1rem;
-}
-
-/* Subheading wrapper styles */
-.subheading-wrapper {
-    background-color: #f3f4f6;
-    border-radius: 10px;
-    padding: 0.5rem;
+.ui.card .header {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.subheading-wrapper .material-icons {
+.ui.card .header .material-icons {
     margin-right: 0.5rem;
 }
 
@@ -120,7 +110,7 @@ nav h1 {
 
 /* Responsive styles */
 @media (max-width: 640px) {
-    .section-wrapper {
+    .ui.card .content {
         padding: 0.5rem;
     }
 
