@@ -119,11 +119,18 @@ body {
 }
 
 /* Updated styles for subheadings */
+.subheading-wrapper {
+    background-color: #f3f4f6;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+}
+
 .subheading {
     font-size: 1rem;
     font-weight: 600;
     color: #4b5563;
-    margin-bottom: 0.25rem; /* Reduced margin */
+    margin-bottom: 0;
 }
 
 /* New classes for vertical spacing and dividers */

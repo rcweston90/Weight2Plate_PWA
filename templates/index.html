@@ -18,8 +18,10 @@
         <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Weight2Plate Calculator</h1>
         <form id="calculatorForm" class="space-y-4">
             <div class="section-wrapper">
-                <div class="input-container section-spacing">
+                <div class="subheading-wrapper">
                     <h2 class="subheading text-center">Enter Plate Weight ( 1 side )</h2>
+                </div>
+                <div class="input-container section-spacing">
                     <div class="input-container flex-row items-center space-x-4">
                         <div class="flex-grow">
                             <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" value="45" step="1" class="w-full">
@@ -33,16 +35,18 @@
                 </div>
             </div>
             <div class="section-wrapper">
+                <div class="subheading-wrapper">
+                    <h2 class="subheading font-bold">Bar Weight (<span class="unit">lbs</span>)</h2>
+                </div>
                 <div class="input-container section-spacing">
-                    <div class="flex-center">
-                        <h2 class="subheading font-bold">Bar Weight (<span class="unit">lbs</span>)</h2>
-                    </div>
                     <div id="barWeightTiles" class="grid grid-cols-3 gap-2"></div>
                 </div>
             </div>
             <div class="section-wrapper">
-                <div class="input-container section-spacing percent-drop-container">
+                <div class="subheading-wrapper">
                     <h2 class="subheading">Percent Drop</h2>
+                </div>
+                <div class="input-container section-spacing percent-drop-container">
                     <div class="slider-container">
                         <div id="slider2"></div>
                     </div>
