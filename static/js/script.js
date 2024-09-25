@@ -5,10 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitButtons = document.querySelectorAll('.unit-button');
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightTiles = document.getElementById('barWeightTiles');
-    const percentDropSlider = document.getElementById('percentDrop');
     const percentDropValue = document.getElementById('percentDropValue');
-    const percentDropPath = document.getElementById('percentDropPath');
-    const percentDropHandle = document.getElementById('percentDropHandle');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
 
@@ -59,19 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function updatePercentDropSlider(value) {
-        const percent = value / 100;
-        const pathLength = 208.28; // Approximate path length
-        const x = 20 + 160 * percent;
-        const y = 80 - 60 * Math.sin(Math.PI * percent);
-        percentDropHandle.setAttribute('cx', x);
-        percentDropHandle.setAttribute('cy', y);
-        percentDropPath.setAttribute('stroke-dasharray', `${percent * pathLength} ${pathLength}`);
-        percentDropValue.textContent = value;
-    }
-
-    percentDropSlider.addEventListener('input', (e) => {
-        updatePercentDropSlider(e.target.value);
+    $("#slider2").roundSlider({
+        sliderType: "min-range",
+        circleShape: "pie",
+        startAngle: "315",
+        lineCap: "round",
+        radius: 130,
+        width: 20,
+        min: 0,
+        max: 100,
+        svgMode: true,
+        pathColor: "#eee",
+        borderWidth: 0,
+        startValue: 10,
+        valueChange: function (e) {
+            var color = e.isInvertedRange ? "#FF5722" : "#8BC34A";
+            $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
+            document.getElementById('percentDropValue').textContent = e.value;
+        }
     });
 
     finalSideWeightSlider.addEventListener('input', () => {
@@ -87,12 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createBarWeightTiles('lbs');
     updateFinalSideWeightSlider();
-    updatePercentDropSlider(10);
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const finalSideWeight = finalSideWeightSlider.value;
-        const percentDrop = percentDropSlider.value;
+        const percentDrop = $("#slider2").roundSlider("getValue");
 
         console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
 

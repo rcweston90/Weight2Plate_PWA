@@ -56,34 +56,19 @@ body {
     margin-bottom: 1.5rem;
 }
 
-#percentDropSlider {
-    touch-action: none;
-    height: 100px;
-    position: relative;
+#slider2 .rs-handle {
+    background-color: #f3f3f3;
+    box-shadow: 0px 0px 4px 0px #000;
 }
 
-#percentDropSlider input[type="range"] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+#slider2 .rs-tooltip-text {
+    font-size: 25px;
+    font-weight: bold;
 }
 
-#percentDropSlider input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    cursor: pointer;
-}
-
-#percentDropSlider input[type="range"]::-moz-range-thumb {
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    cursor: pointer;
+.row {
+    display: flex;
+    justify-content: space-between;
+    max-width: 550px;
+    text-align: center;
 }
