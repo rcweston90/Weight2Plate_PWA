@@ -14,6 +14,7 @@ body {
 
 .bar-weight-tile {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
@@ -34,8 +35,19 @@ body {
     border-color: #3b82f6;
 }
 
-.bar-weight-tile .lbs-value,
-.bar-weight-tile .kg-value {
+.bar-weight-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.bar-weight-values {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bar-weight-values span {
     font-size: 0.875rem;
 }
 

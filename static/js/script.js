@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetButton = document.getElementById('resetButton');
 
     const barWeightOptions = [
-        { lbs: 45, kg: 20 },
-        { lbs: 35, kg: 15 },
-        { lbs: 33, kg: 15 },
-        { lbs: 25, kg: 10 },
-        { lbs: 15, kg: 7 }
+        { lbs: 45, kg: 20, label: 'Olympic' },
+        { lbs: 35, kg: 15, label: 'Women's Olympic' },
+        { lbs: 33, kg: 15, label: 'Technique' },
+        { lbs: 25, kg: 10, label: 'Junior' },
+        { lbs: 15, kg: 7, label: 'Training' }
     ];
 
     let selectedBarWeight = barWeightOptions[0].lbs;
@@ -27,8 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const tile = document.createElement('div');
             tile.className = 'bar-weight-tile';
             tile.innerHTML = `
-                <span>${option.lbs} lbs</span>
-                <span>${option.kg} kg</span>
+                <div class="bar-weight-label">${option.label}</div>
+                <div class="bar-weight-values">
+                    <span>${option.lbs} lbs</span>
+                    <span>${option.kg} kg</span>
+                </div>
             `;
             tile.dataset.lbs = option.lbs;
             tile.dataset.kg = option.kg;
