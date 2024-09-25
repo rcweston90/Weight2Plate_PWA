@@ -173,3 +173,22 @@ body {
 .percent-drop-container .slider-container {
     margin-top: 0.5rem; /* Add small top margin */
 }
+
+/* New styles for steps container and columns */
+.steps-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.step-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .steps-container {
+        flex-direction: column;
+    }
+}
