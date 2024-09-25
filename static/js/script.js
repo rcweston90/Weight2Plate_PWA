@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const barWeightTiles = document.getElementById('barWeightTiles');
     const percentDropSlider = document.getElementById('percentDrop');
     const percentDropValue = document.getElementById('percentDropValue');
+    const percentDropPath = document.getElementById('percentDropPath');
+    const percentDropHandle = document.getElementById('percentDropHandle');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
 
@@ -57,8 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    percentDropSlider.addEventListener('input', () => {
-        percentDropValue.textContent = percentDropSlider.value;
+    function updatePercentDropSlider(value) {
+        const percent = value / 100;
+        const x = 10 + 80 * percent;
+        const y = 90 - 80 * Math.sin(Math.PI * percent);
+        percentDropHandle.setAttribute('cx', x);
+        percentDropHandle.setAttribute('cy', y);
+        percentDropPath.setAttribute('stroke-dasharray', `${x - 10} 1000`);
+        percentDropValue.textContent = value;
+    }
+
+    percentDropSlider.addEventListener('input', (e) => {
+        updatePercentDropSlider(e.target.value);
     });
 
     finalSideWeightSlider.addEventListener('input', () => {
@@ -74,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createBarWeightTiles('lbs');
     updateFinalSideWeightSlider();
+    updatePercentDropSlider(10);
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

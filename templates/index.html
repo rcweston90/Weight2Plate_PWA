@@ -29,8 +29,15 @@
                 <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" value="45" step="1" class="mt-1 block w-full">
             </div>
             <div class="input-container">
-                <label for="percentDrop" class="block text-sm font-medium text-gray-700">Percent Drop: <span id="percentDropValue">10</span>%</label>
-                <input type="range" id="percentDrop" name="percentDrop" min="0" max="100" value="10" class="mt-1 block w-full">
+                <label for="percentDrop" class="block text-sm font-medium text-gray-700 mb-2">Percent Drop: <span id="percentDropValue">10</span>%</label>
+                <div id="percentDropSlider" class="relative w-full h-40">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M10 90 Q 50 10 90 90" stroke="#e5e7eb" stroke-width="4" fill="none" />
+                        <path id="percentDropPath" d="M10 90 Q 50 10 90 90" stroke="#3b82f6" stroke-width="4" fill="none" stroke-dasharray="0 1000" />
+                        <circle id="percentDropHandle" cx="10" cy="90" r="6" fill="#3b82f6" />
+                    </svg>
+                    <input type="range" id="percentDrop" name="percentDrop" min="0" max="100" value="10" class="absolute opacity-0 w-full h-full cursor-pointer">
+                </div>
             </div>
             <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Calculate</button>
         </form>
