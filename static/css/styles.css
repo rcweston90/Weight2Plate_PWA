@@ -173,3 +173,19 @@ body {
 .percent-drop-container .slider-container {
     margin-top: 0.5rem; /* Add small top margin */
 }
+
+/* New styles for the reset button */
+#resetButton {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    transition: all 0.2s ease-in-out;
+}
+
+#resetButton:hover {
+    background-color: #d1d5db;
+}
+
+#resetButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.5);
+}
