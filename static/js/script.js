@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightTiles = document.getElementById('barWeightTiles');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
+    const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
 
     const barWeightOptions = [
@@ -94,14 +95,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    finalSideWeightSlider.addEventListener('input', () => {
-        finalSideWeightValue.textContent = finalSideWeightSlider.value;
-    });
+    finalSideWeightSlider.addEventListener('input', updateFinalSideWeight);
+    finalSideWeightNumber.addEventListener('input', updateFinalSideWeight);
+
+    function updateFinalSideWeight(e) {
+        const value = e.target.value;
+        finalSideWeightSlider.value = value;
+        finalSideWeightNumber.value = value;
+        finalSideWeightValue.textContent = value;
+    }
 
     function updateFinalSideWeightSlider() {
         const maxWeight = selectedUnit === 'lbs' ? 500 : 225;
         finalSideWeightSlider.max = maxWeight;
+        finalSideWeightNumber.max = maxWeight;
         finalSideWeightSlider.value = Math.min(finalSideWeightSlider.value, maxWeight);
+        finalSideWeightNumber.value = finalSideWeightSlider.value;
         finalSideWeightValue.textContent = finalSideWeightSlider.value;
     }
 
