@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('calculatorForm');
     const result = document.getElementById('result');
     const error = document.getElementById('error');
-    const unitButtons = document.querySelectorAll('.unit-button');
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightTiles = document.getElementById('barWeightTiles');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
@@ -58,21 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    unitButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const newUnit = button.textContent.toLowerCase();
-            if (newUnit !== selectedUnit) {
-                selectedUnit = newUnit;
-                unitButtons.forEach(btn => btn.classList.toggle('selected'));
-                unitLabels.forEach(label => label.textContent = selectedUnit);
-                updateBarWeightTilesVisibility();
-                updateFinalSideWeightSlider();
-                const selectedTile = barWeightTiles.querySelector('.selected');
-                if (selectedTile) {
-                    selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
-                }
-            }
-        });
+    const unitToggle = document.getElementById('unitToggle');
+    unitToggle.addEventListener('change', () => {
+      selectedUnit = unitToggle.checked ? 'lbs' : 'kg';
+      unitLabels.forEach(label => label.textContent = selectedUnit);
+      updateBarWeightTilesVisibility();
+      updateFinalSideWeightSlider();
+      const selectedTile = barWeightTiles.querySelector('.selected');
+      if (selectedTile) {
+        selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
+      }
     });
 
     $("#slider2").roundSlider({
@@ -179,9 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $("#slider2").roundSlider("setValue", 0);
 
         selectedUnit = 'lbs';
-        unitButtons.forEach(btn => {
-            btn.classList.toggle('selected', btn.textContent.toLowerCase() === 'lbs');
-        });
+        unitToggle.checked = true;
         unitLabels.forEach(label => label.textContent = 'lbs');
 
         const defaultBarWeightTile = document.querySelector('.bar-weight-tile[data-lbs="45"]');
