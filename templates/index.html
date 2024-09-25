@@ -10,6 +10,7 @@
     <meta name="theme-color" content="#3b82f6">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192x192.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/round-slider@1.5.1/dist/roundslider.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/round-slider@1.5.1/dist/roundslider.min.js"></script>
 </head>
@@ -19,7 +20,7 @@
         <form id="calculatorForm" class="space-y-4">
             <div class="section-wrapper">
                 <div class="subheading-wrapper">
-                    <h2 class="subheading text-center">Enter Plate Weight ( 1 side )</h2>
+                    <h2 class="subheading"><span class="material-icons">looks_one</span>Enter Plate Weight (1 side)</h2>
                 </div>
                 <div class="input-container section-spacing">
                     <div class="input-container flex-row items-center space-x-4">
@@ -36,7 +37,7 @@
             </div>
             <div class="section-wrapper">
                 <div class="subheading-wrapper">
-                    <h2 class="subheading font-bold">Bar Weight (<span class="unit">lbs</span>)</h2>
+                    <h2 class="subheading"><span class="material-icons">looks_two</span>Bar Weight (<span class="unit">lbs</span>)</h2>
                 </div>
                 <div class="input-container section-spacing">
                     <div id="barWeightTiles" class="grid grid-cols-3 gap-2"></div>
@@ -44,7 +45,7 @@
             </div>
             <div class="section-wrapper">
                 <div class="subheading-wrapper">
-                    <h2 class="subheading">Percent Drop</h2>
+                    <h2 class="subheading"><span class="material-icons">looks_3</span>Percent Drop</h2>
                 </div>
                 <div class="input-container section-spacing percent-drop-container">
                     <div class="slider-container">
