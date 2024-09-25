@@ -189,3 +189,15 @@ body {
     outline: none;
     box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.5);
 }
+
+/* New styles for section wrapper */
+.section-wrapper {
+    border: 1px solid #404040;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.section-wrapper:last-child {
+    margin-bottom: 0;
+}
