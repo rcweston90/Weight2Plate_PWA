@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
     const calculateButton = document.getElementById('calculateButton');
     const resetButton = document.getElementById('resetButton');
+    const inputPage = document.getElementById('input-page');
+    const outputPage = document.getElementById('output-page');
 
     const barWeightOptions = [
         { lbs: 45, kg: 20 },
@@ -65,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 unitLabels.forEach(label => label.textContent = selectedUnit);
                 updateBarWeightTilesVisibility();
                 updateFinalSideWeightSlider();
-                // Update selected bar weight based on the new unit
                 const selectedTile = barWeightTiles.querySelector('.selected');
                 if (selectedTile) {
                     selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
@@ -144,10 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             displayResult(data);
+            showOutputPage();
         } catch (err) {
             displayError(err.message);
         }
     });
+
+    function showOutputPage() {
+        inputPage.classList.add('hidden');
+        outputPage.classList.remove('hidden');
+        calculateButton.classList.add('hidden');
+        resetButton.classList.remove('hidden');
+    }
 
     function displayResult(data) {
         error.classList.add('hidden');
@@ -156,12 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dropSideWeight').textContent = `Drop Side Weight: ${data.drop_side_weight} ${data.unit}`;
         document.getElementById('remainingWeight').textContent = `Remaining Weight: ${data.remaining_weight} ${data.unit}`;
         document.getElementById('remainingWeightPerSide').textContent = `Remaining Weight Per Side: ${data.remaining_weight_per_side} ${data.unit}`;
-        
-        // Display second stage results
-        document.getElementById('secondStageWeight').textContent = `Second Stage Weight: ${data.second_stage_weight} ${data.unit}`;
-        document.getElementById('secondDropSideWeight').textContent = `Second Drop Side Weight: ${data.second_drop_side_weight} ${data.unit}`;
-        document.getElementById('secondRemainingWeight').textContent = `Second Remaining Weight: ${data.second_remaining_weight} ${data.unit}`;
-        document.getElementById('secondRemainingWeightPerSide').textContent = `Second Remaining Weight Per Side: ${data.second_remaining_weight_per_side} ${data.unit}`;
     }
 
     function displayError(message) {
@@ -171,32 +174,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetCalculator() {
-        // Reset form inputs
         finalSideWeightSlider.value = 45;
         finalSideWeightNumber.value = 45;
         $("#slider2").roundSlider("setValue", 0);
 
-        // Reset unit to lbs
         selectedUnit = 'lbs';
         unitButtons.forEach(btn => {
             btn.classList.toggle('selected', btn.textContent.toLowerCase() === 'lbs');
         });
         unitLabels.forEach(label => label.textContent = 'lbs');
 
-        // Reset bar weight
         const defaultBarWeightTile = document.querySelector('.bar-weight-tile[data-lbs="45"]');
         if (defaultBarWeightTile) {
             selectBarWeight(defaultBarWeightTile);
         }
         updateBarWeightTilesVisibility();
 
-        // Clear results and errors
         result.classList.add('hidden');
         error.classList.add('hidden');
 
-        // Update UI
         updateFinalSideWeightSlider();
         
+        inputPage.classList.remove('hidden');
+        outputPage.classList.add('hidden');
+        calculateButton.classList.remove('hidden');
+        resetButton.classList.add('hidden');
+
         console.log('Calculator reset');
     }
 

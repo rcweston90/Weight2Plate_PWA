@@ -22,7 +22,7 @@
             <h1 class="text-2xl font-bold">Weight2Plate Calculator</h1>
         </div>
     </nav>
-    <div class="flex-grow flex items-center justify-center p-4">
+    <div id="input-page" class="flex-grow flex items-center justify-center p-4">
         <div class="w-full max-w-md space-y-4">
             <form id="calculatorForm" class="space-y-4">
                 <div class="card">
@@ -67,31 +67,29 @@
                 <button type="button" class="unit-button px-4 py-2 bg-blue-500 text-white rounded-full selected">LB</button>
                 <button type="button" class="unit-button px-4 py-2 bg-gray-300 text-gray-700 rounded-full">KG</button>
             </div>
-            <div id="result" class="card mt-6 hidden">
+            <div id="error" class="mt-6 text-center text-red-500 hidden"></div>
+        </div>
+    </div>
+    <div id="output-page" class="flex-grow flex items-center justify-center p-4 hidden">
+        <div class="w-full max-w-md space-y-4">
+            <div id="result" class="card mt-6">
                 <div class="card-header">
                     <span class="material-icons">check_circle</span>
                     <h3 class="card-title">Results</h3>
                 </div>
                 <div class="card-content">
-                    <h4 class="font-bold mt-2">First Stage</h4>
                     <p id="finalSetWeight" class="mt-2 text-sm text-gray-500"></p>
                     <p id="dropSideWeight" class="mt-2 text-sm text-gray-500"></p>
                     <p id="remainingWeight" class="mt-2 text-sm text-gray-500"></p>
                     <p id="remainingWeightPerSide" class="mt-2 text-sm text-gray-500"></p>
-                    <h4 class="font-bold mt-4">Second Stage</h4>
-                    <p id="secondStageWeight" class="mt-2 text-sm text-gray-500"></p>
-                    <p id="secondDropSideWeight" class="mt-2 text-sm text-gray-500"></p>
-                    <p id="secondRemainingWeight" class="mt-2 text-sm text-gray-500"></p>
-                    <p id="secondRemainingWeightPerSide" class="mt-2 text-sm text-gray-500"></p>
                 </div>
             </div>
-            <div id="error" class="mt-6 text-center text-red-500 hidden"></div>
         </div>
     </div>
     <div class="sticky-buttons">
         <div class="container mx-auto px-4 py-4 flex space-x-4">
             <button type="button" id="calculateButton" class="flex-1 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Calculate</button>
-            <button type="button" id="resetButton" class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">Reset</button>
+            <button type="button" id="resetButton" class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 hidden">Reset</button>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
