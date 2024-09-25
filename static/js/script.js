@@ -61,11 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updatePercentDropSlider(value) {
         const percent = value / 100;
-        const x = 10 + 80 * percent;
-        const y = 90 - 80 * Math.sin(Math.PI * percent);
+        const pathLength = 208.28; // Approximate path length
+        const x = 20 + 160 * percent;
+        const y = 80 - 60 * Math.sin(Math.PI * percent);
         percentDropHandle.setAttribute('cx', x);
         percentDropHandle.setAttribute('cy', y);
-        percentDropPath.setAttribute('stroke-dasharray', `${x - 10} 1000`);
+        percentDropPath.setAttribute('stroke-dasharray', `${percent * pathLength} ${pathLength}`);
         percentDropValue.textContent = value;
     }
 
