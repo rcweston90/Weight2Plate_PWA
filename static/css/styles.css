@@ -1,7 +1,9 @@
-/* Existing styles */
-/* ... */
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+}
 
-/* New styles for the navigation bar */
+/* Navigation bar styles */
 nav {
     position: sticky;
     top: 0;
@@ -23,10 +25,106 @@ nav h1 {
     font-weight: bold;
 }
 
-/* Adjust the main content to account for the new navigation bar */
+/* Main content styles */
 .flex-grow {
     padding-top: 1rem;
 }
 
-/* Rest of the existing styles */
-/* ... */
+/* Section wrapper styles */
+.section-wrapper {
+    border: 1px solid #404040;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Subheading wrapper styles */
+.subheading-wrapper {
+    background-color: #f3f4f6;
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.subheading-wrapper .material-icons {
+    margin-right: 0.5rem;
+}
+
+/* Bar weight tiles styles */
+#barWeightTiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+.bar-weight-tile {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bar-weight-tile.selected {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Unit button styles */
+.unit-button {
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.unit-button.selected {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Sticky buttons styles */
+.sticky-buttons {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Slider styles */
+#slider2 {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.rs-handle {
+    background-color: #3b82f6;
+}
+
+.rs-border {
+    border-color: #3b82f6;
+}
+
+.rs-path-color {
+    background-color: #3b82f6;
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+    .section-wrapper {
+        padding: 0.5rem;
+    }
+
+    #barWeightTiles {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #slider2 {
+        width: 150px;
+        height: 150px;
+    }
+}

@@ -49,4 +49,4 @@ def serve_service_worker():
     return send_from_directory('static/js', 'service-worker.js')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8080)
