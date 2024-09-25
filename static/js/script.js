@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
+    const calculateButton = document.getElementById('calculateButton');
     const resetButton = document.getElementById('resetButton');
 
     const barWeightOptions = [
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createBarWeightTiles();
     updateFinalSideWeightSlider();
 
-    document.querySelector('.sticky-buttons button[type="submit"]').addEventListener('click', async (e) => {
+    calculateButton.addEventListener('click', async (e) => {
         e.preventDefault();
         const finalSideWeight = finalSideWeightSlider.value;
         const percentDrop = Math.abs($("#slider2").roundSlider("getValue"));
@@ -189,6 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update UI
         updateFinalSideWeightSlider();
+        
+        console.log('Calculator reset');
     }
 
     resetButton.addEventListener('click', resetCalculator);
