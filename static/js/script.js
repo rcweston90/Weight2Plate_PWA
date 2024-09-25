@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
+    const resetButton = document.getElementById('resetButton');
 
     const barWeightOptions = [
         { lbs: 45, kg: 20 },
@@ -164,4 +165,35 @@ document.addEventListener('DOMContentLoaded', () => {
         error.classList.remove('hidden');
         error.textContent = message;
     }
+
+    function resetCalculator() {
+        // Reset final side weight
+        finalSideWeightSlider.value = 45;
+        finalSideWeightNumber.value = 45;
+        if (finalSideWeightValue) {
+            finalSideWeightValue.textContent = 45;
+        }
+
+        // Reset unit to lbs
+        selectedUnit = 'lbs';
+        unitButtons.forEach(btn => {
+            btn.classList.toggle('selected', btn.textContent.toLowerCase() === 'lbs');
+        });
+        unitLabels.forEach(label => label.textContent = 'lbs');
+
+        // Reset bar weight
+        selectBarWeight(barWeightTiles.children[0]);
+        updateBarWeightTilesVisibility();
+
+        // Reset percent drop slider
+        $("#slider2").roundSlider("setValue", 0);
+
+        // Hide result and error
+        result.classList.add('hidden');
+        error.classList.add('hidden');
+
+        console.log('Calculator reset to default values');
+    }
+
+    resetButton.addEventListener('click', resetCalculator);
 });
