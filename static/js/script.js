@@ -58,23 +58,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $("#slider2").roundSlider({
         sliderType: "min-range",
-        circleShape: "pie",
-        startAngle: "315",
+        handleShape: "dot",
+        circleShape: "half-top",
+        startAngle: 315,
         lineCap: "round",
-        radius: 130,
+        radius: 105,
         width: 20,
         min: 0,
         max: 100,
+        step: 1,
+        value: 10,
         svgMode: true,
-        pathColor: "#eee",
+        rangeColor: "#3b82f6",
+        pathColor: "#e5e7eb",
         borderWidth: 0,
-        startValue: 10,
+        handleSize: "+16",
         valueChange: function (e) {
-            var color = e.isInvertedRange ? "#FF5722" : "#8BC34A";
-            $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
             document.getElementById('percentDropValue').textContent = e.value;
         }
     });
+
+    // Add this line after the roundSlider configuration
+    document.getElementById('percentDropValue').textContent = $("#slider2").roundSlider("getValue");
 
     finalSideWeightSlider.addEventListener('input', () => {
         finalSideWeightValue.textContent = finalSideWeightSlider.value;
