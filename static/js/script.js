@@ -57,16 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const unitToggle = document.getElementById('unitToggle');
-    unitToggle.addEventListener('change', () => {
-      selectedUnit = unitToggle.checked ? 'lbs' : 'kg';
-      unitLabels.forEach(label => label.textContent = selectedUnit);
-      updateBarWeightTilesVisibility();
-      updateFinalSideWeightSlider();
-      const selectedTile = barWeightTiles.querySelector('.selected');
-      if (selectedTile) {
-        selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
-      }
+    const unitButtons = document.querySelectorAll('.unit-button');
+    unitButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        selectedUnit = button.dataset.unit;
+        unitButtons.forEach(btn => btn.classList.toggle('selected', btn === button));
+        unitLabels.forEach(label => label.textContent = selectedUnit);
+        updateBarWeightTilesVisibility();
+        updateFinalSideWeightSlider();
+        const selectedTile = barWeightTiles.querySelector('.selected');
+        if (selectedTile) {
+          selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
+        }
+      });
     });
 
     $("#slider2").roundSlider({
@@ -173,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $("#slider2").roundSlider("setValue", 0);
 
         selectedUnit = 'lbs';
-        unitToggle.checked = true;
+        unitButtons.forEach(btn => btn.classList.toggle('selected', btn.dataset.unit === 'lbs'));
         unitLabels.forEach(label => label.textContent = 'lbs');
 
         const defaultBarWeightTile = document.querySelector('.bar-weight-tile[data-lbs="45"]');

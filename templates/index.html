@@ -20,18 +20,14 @@
         <div class="container mx-auto flex items-center">
             <span class="material-icons text-2xl mr-2 text-blue-600">fitness_center</span>
             <h1 class="text-2xl font-bold">Weight2Plate Calculator</h1>
-            <div class="unit-toggle ml-auto">
-              <span class="mr-2">KG</span>
-              <label class="switch">
-                <input type="checkbox" id="unitToggle" checked>
-                <span class="slider round"></span>
-              </label>
-              <span class="ml-2">LB</span>
-            </div>
         </div>
     </nav>
     <div id="input-page" class="flex-grow flex items-center justify-center p-4">
         <div class="w-full max-w-md space-y-4">
+            <div class="unit-buttons mb-4">
+              <button type="button" class="unit-button selected" data-unit="lbs">LB</button>
+              <button type="button" class="unit-button" data-unit="kg">KG</button>
+            </div>
             <form id="calculatorForm" class="space-y-4">
                 <div class="card">
                     <div class="card-header">
@@ -76,6 +72,10 @@
     </div>
     <div id="output-page" class="flex-grow flex items-center justify-center p-4 hidden">
         <div class="w-full max-w-md space-y-4">
+            <div class="unit-buttons mb-4">
+              <button type="button" class="unit-button selected" data-unit="lbs">LB</button>
+              <button type="button" class="unit-button" data-unit="kg">KG</button>
+            </div>
             <div id="result" class="card mt-6">
                 <div class="card-header">
                     <span class="material-icons">check_circle</span>
