@@ -66,4 +66,6 @@ def serve_service_worker():
     return send_from_directory('static/js', 'service-worker.js')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=80)
+# Ensure the server runs continuously and not in debug mode
+app.run(host='0.0.0.0', port=80, debug=False)
