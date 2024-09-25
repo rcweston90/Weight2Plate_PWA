@@ -21,41 +21,47 @@
             <h1 class="text-2xl font-bold">Weight2Plate Calculator</h1>
         </div>
     </nav>
-    <div class="flex-grow flex items-center justify-center">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div class="w-full max-w-md space-y-4">
             <form id="calculatorForm" class="space-y-4">
-                <div class="section-wrapper">
-                    <div class="subheading-wrapper">
-                        <span class="material-icons">looks_one</span>
-                        <h2 class="subheading font-bold">Enter Plate Weight</h2>
-                    </div>
-                    <div class="mt-2">
-                        <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight</label>
-                        <div class="mt-1 relative rounded-md shadow-sm">
-                            <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" step="1" value="45" class="w-full">
-                            <input type="number" id="finalSideWeightNumber" name="finalSideWeightNumber" min="0" max="500" value="45" class="mt-2 block w-full pl-3 pr-12 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <div class="absolute inset-y-0 right-0 flex items-center">
-                                <label for="unit" class="sr-only">Unit</label>
-                                <span class="text-gray-500 sm:text-sm unit" style="margin-right: 8px;">
-                                    lbs
-                                </span>
+                <div class="card">
+                    <div class="section-wrapper">
+                        <div class="subheading-wrapper">
+                            <span class="material-icons">looks_one</span>
+                            <h2 class="subheading font-bold">Enter Plate Weight</h2>
+                        </div>
+                        <div class="mt-2">
+                            <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" step="1" value="45" class="w-full">
+                                <input type="number" id="finalSideWeightNumber" name="finalSideWeightNumber" min="0" max="500" value="45" class="mt-2 block w-full pl-3 pr-12 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <div class="absolute inset-y-0 right-0 flex items-center">
+                                    <label for="unit" class="sr-only">Unit</label>
+                                    <span class="text-gray-500 sm:text-sm unit" style="margin-right: 8px;">
+                                        lbs
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="section-wrapper">
-                    <div class="subheading-wrapper">
-                        <span class="material-icons">looks_two</span>
-                        <h2 class="subheading font-bold">Bar Weight</h2>
+                <div class="card">
+                    <div class="section-wrapper">
+                        <div class="subheading-wrapper">
+                            <span class="material-icons">looks_two</span>
+                            <h2 class="subheading font-bold">Bar Weight</h2>
+                        </div>
+                        <div id="barWeightTiles" class="mt-2 grid grid-cols-3 gap-2"></div>
                     </div>
-                    <div id="barWeightTiles" class="mt-2 grid grid-cols-3 gap-2"></div>
                 </div>
-                <div class="section-wrapper">
-                    <div class="subheading-wrapper">
-                        <span class="material-icons">looks_3</span>
-                        <h2 class="subheading font-bold">Percent Drop</h2>
+                <div class="card">
+                    <div class="section-wrapper">
+                        <div class="subheading-wrapper">
+                            <span class="material-icons">looks_3</span>
+                            <h2 class="subheading font-bold">Percent Drop</h2>
+                        </div>
+                        <div id="slider2" class="mt-2"></div>
                     </div>
-                    <div id="slider2" class="mt-2"></div>
                 </div>
                 <div class="mt-4 flex justify-center space-x-4">
                     <button type="button" class="unit-button px-4 py-2 bg-blue-500 text-white rounded-full selected">LB</button>

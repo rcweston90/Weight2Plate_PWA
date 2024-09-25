@@ -30,12 +30,17 @@ nav h1 {
     padding-top: 1rem;
 }
 
+/* Card styles */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
 /* Section wrapper styles */
 .section-wrapper {
-    border: 1px solid #404040;
-    border-radius: 20px;
     padding: 1rem;
-    margin-bottom: 1rem;
 }
 
 /* Subheading wrapper styles */
