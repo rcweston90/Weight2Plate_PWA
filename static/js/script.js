@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const barWeightTiles = document.getElementById('barWeightTiles');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
-    const finalSideWeightValue = document.getElementById('finalSideWeightValue');
     const calculateButton = document.getElementById('calculateButton');
     const resetButton = document.getElementById('resetButton');
 
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = e.target.value;
         finalSideWeightSlider.value = value;
         finalSideWeightNumber.value = value;
-        finalSideWeightValue.textContent = value;
     }
 
     function updateFinalSideWeightSlider() {
@@ -113,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         finalSideWeightNumber.max = maxWeight;
         finalSideWeightSlider.value = Math.min(finalSideWeightSlider.value, maxWeight);
         finalSideWeightNumber.value = finalSideWeightSlider.value;
-        finalSideWeightValue.textContent = finalSideWeightSlider.value;
     }
 
     createBarWeightTiles();
@@ -124,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const finalSideWeight = finalSideWeightSlider.value;
         const percentDrop = Math.abs($("#slider2").roundSlider("getValue"));
 
-        console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
+        console.log(`Calculating with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
 
         if (!selectedBarWeight || !finalSideWeight || !percentDrop) {
             displayError('All fields are required');
@@ -181,7 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
         unitLabels.forEach(label => label.textContent = 'lbs');
 
         // Reset bar weight
-        selectBarWeight(barWeightTiles.children[0]);
+        const defaultBarWeightTile = document.querySelector('.bar-weight-tile[data-lbs="45"]');
+        if (defaultBarWeightTile) {
+            selectBarWeight(defaultBarWeightTile);
+        }
         updateBarWeightTilesVisibility();
 
         // Clear results and errors
