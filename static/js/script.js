@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         svgMode: true,
         pathColor: "#eee",
         borderWidth: 0,
-        startValue: 10,
+        startValue: 0,
         valueChange: function (e) {
             var color = e.value > 0 ? "#8BC34A" : "#FF5722";
             $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
