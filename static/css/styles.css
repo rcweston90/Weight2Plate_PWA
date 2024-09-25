@@ -30,21 +30,36 @@ nav h1 {
     padding-top: 1rem;
 }
 
-/* Card styles */
-.ui.card {
-    width: 100% !important;
-    margin-bottom: 1rem !important;
+/* Card styles inspired by shadcn-ui */
+.card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
 }
 
-.ui.card .header {
+.card-header {
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
-    font-weight: bold;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.ui.card .header .material-icons {
+.card-header .material-icons {
     margin-right: 0.5rem;
+    font-size: 1.25rem;
+    color: #3b82f6;
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.card-content {
+    padding: 1rem;
 }
 
 /* Bar weight tiles styles */
@@ -60,12 +75,13 @@ nav h1 {
     padding: 0.5rem;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .bar-weight-tile.selected {
     background-color: #3b82f6;
     color: white;
+    border-color: #2563eb;
 }
 
 /* Unit button styles */
@@ -110,8 +126,8 @@ nav h1 {
 
 /* Responsive styles */
 @media (max-width: 640px) {
-    .ui.card .content {
-        padding: 0.5rem;
+    .card-content {
+        padding: 0.75rem;
     }
 
     #barWeightTiles {
