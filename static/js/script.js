@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const barWeightTiles = document.getElementById('barWeightTiles');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightNumber = document.getElementById('finalSideWeightNumber');
-    const finalSideWeightValue = document.getElementById('finalSideWeightValue');
     const resetButton = document.getElementById('resetButton');
 
     const barWeightOptions = [
@@ -28,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tile = document.createElement('div');
             tile.className = 'bar-weight-tile';
             tile.innerHTML = `
-                <span class="lbs-value">${option.lbs} lbs</span>
-                <span class="kg-value">${option.kg} kg</span>
+                <span>${option.lbs} lbs</span>
+                <span>${option.kg} kg</span>
             `;
             tile.dataset.lbs = option.lbs;
             tile.dataset.kg = option.kg;
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Created tile: ${tile.textContent}`);
         });
         selectBarWeight(barWeightTiles.children[0]);
-        updateBarWeightTilesVisibility();
     }
 
     function selectBarWeight(tile) {
@@ -49,13 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(`Selected bar weight: ${selectedBarWeight}`);
     }
 
-    function updateBarWeightTilesVisibility() {
-        barWeightTiles.querySelectorAll('.bar-weight-tile').forEach(tile => {
-            tile.querySelector('.lbs-value').style.display = selectedUnit === 'lbs' ? 'inline' : 'none';
-            tile.querySelector('.kg-value').style.display = selectedUnit === 'kg' ? 'inline' : 'none';
-        });
-    }
-
     unitButtons.forEach(button => {
         button.addEventListener('click', () => {
             const newUnit = button.textContent.toLowerCase();
@@ -63,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedUnit = newUnit;
                 unitButtons.forEach(btn => btn.classList.toggle('selected'));
                 unitLabels.forEach(label => label.textContent = selectedUnit);
-                updateBarWeightTilesVisibility();
                 updateFinalSideWeightSlider();
                 // Update selected bar weight based on the new unit
                 const selectedTile = barWeightTiles.querySelector('.selected');
@@ -103,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = e.target.value;
         finalSideWeightSlider.value = value;
         finalSideWeightNumber.value = value;
-        finalSideWeightValue.textContent = value;
     }
 
     function updateFinalSideWeightSlider() {
@@ -112,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         finalSideWeightNumber.max = maxWeight;
         finalSideWeightSlider.value = Math.min(finalSideWeightSlider.value, maxWeight);
         finalSideWeightNumber.value = finalSideWeightSlider.value;
-        finalSideWeightValue.textContent = finalSideWeightSlider.value;
     }
 
     createBarWeightTiles();
@@ -170,9 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset final side weight
         finalSideWeightSlider.value = 45;
         finalSideWeightNumber.value = 45;
-        if (finalSideWeightValue) {
-            finalSideWeightValue.textContent = 45;
-        }
 
         // Reset unit to lbs
         selectedUnit = 'lbs';
@@ -183,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Reset bar weight
         selectBarWeight(barWeightTiles.children[0]);
-        updateBarWeightTilesVisibility();
 
         // Reset percent drop slider
         $("#slider2").roundSlider("setValue", 0);
