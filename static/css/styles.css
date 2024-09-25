@@ -70,7 +70,7 @@ body {
 }
 
 #slider2 .rs-tooltip-text {
-    font-size: 25px;
+    font-size: 12px; /* Reduced font size */
     font-weight: bold;
 }
 
@@ -109,4 +109,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Updated styles for subheadings */
+.subheading {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
 }

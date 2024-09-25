@@ -18,7 +18,7 @@
         <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Weight2Plate Calculator</h1>
         <form id="calculatorForm" class="space-y-4">
             <div class="input-container">
-                <h2 class="text-xl font-semibold mb-4 text-center">Select Unit</h2>
+                <h2 class="subheading text-center">Select Unit</h2>
                 <div class="unit-buttons-container mb-4">
                     <button type="button" id="lbsButton" class="unit-button selected">lbs</button>
                     <button type="button" id="kgButton" class="unit-button">kg</button>
@@ -26,17 +26,20 @@
             </div>
             <div class="input-container">
                 <div class="flex-center">
-                    <label for="barWeight" class="block text-sm font-medium text-gray-700 mb-2">Bar Weight (<span class="unit">lbs</span>)</label>
+                    <h2 class="subheading">Bar Weight (<span class="unit">lbs</span>)</h2>
                 </div>
                 <div id="barWeightTiles" class="grid grid-cols-3 gap-2"></div>
             </div>
             <div class="input-container">
                 <div class="flex-center">
-                    <label for="finalSideWeight" class="block text-sm font-medium text-gray-700">Final Side Weight: <span id="finalSideWeightValue">45</span> <span class="unit">lbs</span></label>
+                    <h2 class="subheading">Final Side Weight: <span id="finalSideWeightValue">45</span> <span class="unit">lbs</span></h2>
                 </div>
                 <input type="range" id="finalSideWeight" name="finalSideWeight" min="0" max="500" value="45" step="1" class="mt-1 block w-full">
             </div>
             <div class="input-container">
+                <div class="flex-center">
+                    <h2 class="subheading">Percent Drop</h2>
+                </div>
                 <div class="slider-container">
                     <div id="slider2"></div>
                 </div>
