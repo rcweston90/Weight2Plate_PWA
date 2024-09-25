@@ -72,3 +72,15 @@ body {
     max-width: 550px;
     text-align: center;
 }
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+#slider2 {
+    width: 250px;
+    height: 250px;
+}

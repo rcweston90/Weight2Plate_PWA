@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const unitButtons = document.querySelectorAll('.unit-button');
     const unitLabels = document.querySelectorAll('.unit');
     const barWeightTiles = document.getElementById('barWeightTiles');
-    const percentDropValue = document.getElementById('percentDropValue');
     const finalSideWeightSlider = document.getElementById('finalSideWeight');
     const finalSideWeightValue = document.getElementById('finalSideWeightValue');
 
@@ -61,23 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
         circleShape: "pie",
         startAngle: "315",
         lineCap: "round",
-        radius: 130,
+        radius: 100,
         width: 20,
-        min: -100,
+        min: 0,
         max: 100,
         svgMode: true,
         pathColor: "#eee",
         borderWidth: 0,
-        startValue: 0,
+        startValue: 10,
         valueChange: function (e) {
-            var color = e.isInvertedRange ? "#FF5722" : "#8BC34A";
+            var color = e.value > 0 ? "#8BC34A" : "#FF5722";
             $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
-            document.getElementById('percentDropValue').textContent = Math.abs(e.value);
+        },
+        tooltipFormat: function (e) {
+            return "Percent Drop: " + Math.abs(e.value) + "%";
         }
     });
-
-    var sliderObj = $("#slider2").data("roundSlider");
-    sliderObj.setValue(30);
 
     finalSideWeightSlider.addEventListener('input', () => {
         finalSideWeightValue.textContent = finalSideWeightSlider.value;
