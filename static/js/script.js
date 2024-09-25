@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
         },
         tooltipFormat: function (e) {
-            return "Percent Drop: " + Math.abs(e.value) + "%";
+            return Math.abs(e.value) + "%";
         }
     });
 
