@@ -124,6 +124,19 @@ nav h1 {
     background-color: #3b82f6;
 }
 
+/* Result card styles */
+#result.card {
+    margin-top: 1.5rem;
+}
+
+#result .card-header .material-icons {
+    color: #10b981; /* Green color for success */
+}
+
+#result .card-content p {
+    margin-bottom: 0.5rem;
+}
+
 /* Responsive styles */
 @media (max-width: 640px) {
     .card-content {
