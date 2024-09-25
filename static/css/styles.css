@@ -57,15 +57,14 @@ body {
     border: 1px solid #e5e7eb;
     font-weight: 600;
     transition: all 0.2s ease-in-out;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     padding: 0;
-    margin-left: 0.25rem;
 }
 
 .unit-button:hover {
@@ -88,7 +87,7 @@ body {
 }
 
 #slider2 .rs-tooltip-text {
-    font-size: 12px; /* Reduced font size */
+    font-size: 16px;
     font-weight: bold;
 }
 
@@ -103,12 +102,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px; /* Reduced height */
+    height: 300px;
 }
 
 #slider2 {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
 }
 
 .unit-buttons-container {
@@ -118,95 +117,9 @@ body {
     margin-top: 0.5rem;
 }
 
-/* New classes for centering text */
-.text-center {
-    text-align: center;
-}
-
-.flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Updated styles for subheadings */
 .subheading {
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 600;
     color: #4b5563;
-    margin-bottom: 0.25rem; /* Reduced margin */
-}
-
-/* New classes for vertical spacing and dividers */
-.section-divider {
-    border-top: 1px solid #e5e7eb;
-    margin: 1rem 0; /* Reduced margin */
-}
-
-.section-spacing {
-    margin-top: 1.5rem; /* Reduced margin */
-    margin-bottom: 1.5rem; /* Reduced margin */
-}
-
-/* New styles for Final Side Weight input */
-.flex-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.items-center {
-    align-items: center;
-}
-
-.space-y-2 > * + * {
-    margin-top: 0.5rem;
-}
-
-.flex-grow {
-    flex-grow: 1;
-}
-
-.w-full {
-    width: 100%;
-}
-
-/* New styles to reduce space between 'Percent Drop' text and horseshoe slider */
-.percent-drop-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.percent-drop-container .subheading {
-    margin-bottom: 0; /* Remove bottom margin */
-}
-
-.percent-drop-container .slider-container {
-    margin-top: 0.5rem; /* Add small top margin */
-}
-
-/* Updated styles for steps container and columns */
-.steps-container {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.step-column {
-    flex: 1 1 300px;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-/* Ensure visibility on smaller screens */
-@media (max-width: 767px) {
-    .steps-container {
-        flex-direction: column;
-    }
-    
-    .step-column {
-        width: 100%;
-    }
+    margin-bottom: 0.5rem;
 }

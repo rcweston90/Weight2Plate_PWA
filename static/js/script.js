@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedUnit = 'lbs';
 
     function createBarWeightTiles() {
-        console.log(`Creating bar weight tiles`);
         barWeightTiles.innerHTML = '';
         barWeightOptions.forEach(option => {
             const tile = document.createElement('div');
@@ -37,17 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
             tile.dataset.kg = option.kg;
             tile.addEventListener('click', () => selectBarWeight(tile));
             barWeightTiles.appendChild(tile);
-            console.log(`Created tile: ${tile.textContent}`);
         });
         selectBarWeight(barWeightTiles.children[0]);
     }
 
     function selectBarWeight(tile) {
-        console.log(`Selecting bar weight: ${tile.dataset[selectedUnit]}`);
         barWeightTiles.querySelectorAll('.bar-weight-tile').forEach(t => t.classList.remove('selected'));
         tile.classList.add('selected');
         selectedBarWeight = parseFloat(tile.dataset[selectedUnit]);
-        console.log(`Selected bar weight: ${selectedBarWeight}`);
     }
 
     unitButtons.forEach(button => {
@@ -58,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 unitButtons.forEach(btn => btn.classList.toggle('selected'));
                 unitLabels.forEach(label => label.textContent = selectedUnit);
                 updateFinalSideWeightSlider();
-                // Update selected bar weight based on the new unit
                 const selectedTile = barWeightTiles.querySelector('.selected');
                 if (selectedTile) {
                     selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
@@ -72,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         circleShape: "pie",
         startAngle: "315",
         lineCap: "round",
-        radius: 100,
+        radius: 130,
         width: 20,
         min: 0,
         max: 100,
@@ -113,8 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const finalSideWeight = finalSideWeightSlider.value;
         const percentDrop = Math.abs($("#slider2").roundSlider("getValue"));
-
-        console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
 
         if (!selectedBarWeight || !finalSideWeight || !percentDrop) {
             displayError('All fields are required');
