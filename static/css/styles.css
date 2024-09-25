@@ -118,3 +118,14 @@ body {
     color: #4b5563;
     margin-bottom: 0.5rem;
 }
+
+/* New classes for vertical spacing and dividers */
+.section-divider {
+    border-top: 1px solid #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+.section-spacing {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
