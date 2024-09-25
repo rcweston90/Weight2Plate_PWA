@@ -58,28 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $("#slider2").roundSlider({
         sliderType: "min-range",
-        handleShape: "dot",
-        circleShape: "half-top",
-        startAngle: 315,
+        circleShape: "pie",
+        startAngle: "315",
         lineCap: "round",
-        radius: 105,
+        radius: 130,
         width: 20,
-        min: 0,
+        min: -100,
         max: 100,
-        step: 1,
-        value: 10,
         svgMode: true,
-        rangeColor: "#3b82f6",
-        pathColor: "#e5e7eb",
+        pathColor: "#eee",
         borderWidth: 0,
-        handleSize: "+16",
+        startValue: 0,
         valueChange: function (e) {
-            document.getElementById('percentDropValue').textContent = e.value;
+            var color = e.isInvertedRange ? "#FF5722" : "#8BC34A";
+            $("#slider2").roundSlider({ "rangeColor": color, "tooltipColor": color });
+            document.getElementById('percentDropValue').textContent = Math.abs(e.value);
         }
     });
 
-    // Add this line after the roundSlider configuration
-    document.getElementById('percentDropValue').textContent = $("#slider2").roundSlider("getValue");
+    var sliderObj = $("#slider2").data("roundSlider");
+    sliderObj.setValue(30);
 
     finalSideWeightSlider.addEventListener('input', () => {
         finalSideWeightValue.textContent = finalSideWeightSlider.value;
@@ -98,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const finalSideWeight = finalSideWeightSlider.value;
-        const percentDrop = $("#slider2").roundSlider("getValue");
+        const percentDrop = Math.abs($("#slider2").roundSlider("getValue"));
 
         console.log(`Submitting form with: barWeight=${selectedBarWeight}, finalSideWeight=${finalSideWeight}, percentDrop=${percentDrop}, unit=${selectedUnit}`);
 
