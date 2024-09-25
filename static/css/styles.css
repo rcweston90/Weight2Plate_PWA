@@ -185,21 +185,28 @@ body {
     margin-top: 0.5rem; /* Add small top margin */
 }
 
-/* New styles for steps container and columns */
+/* Updated styles for steps container and columns */
 .steps-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .step-column {
-    flex: 1;
+    flex: 1 1 300px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
-@media (min-width: 768px) {
+/* Ensure visibility on smaller screens */
+@media (max-width: 767px) {
     .steps-container {
-        flex-direction: row;
+        flex-direction: column;
+    }
+    
+    .step-column {
+        width: 100%;
     }
 }
