@@ -19,27 +19,39 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedBarWeight = barWeightOptions[0].lbs;
     let selectedUnit = 'lbs';
 
-    function createBarWeightTiles(unit) {
-        console.log(`Creating bar weight tiles for unit: ${unit}`);
+    function createBarWeightTiles() {
+        console.log(`Creating bar weight tiles`);
         barWeightTiles.innerHTML = '';
         barWeightOptions.forEach(option => {
             const tile = document.createElement('div');
             tile.className = 'bar-weight-tile';
-            tile.textContent = `${option[unit]} ${unit}`;
-            tile.dataset.weight = option[unit];
+            tile.innerHTML = `
+                <span class="lbs-value">${option.lbs} lbs</span>
+                <span class="kg-value">${option.kg} kg</span>
+            `;
+            tile.dataset.lbs = option.lbs;
+            tile.dataset.kg = option.kg;
             tile.addEventListener('click', () => selectBarWeight(tile));
             barWeightTiles.appendChild(tile);
             console.log(`Created tile: ${tile.textContent}`);
         });
         selectBarWeight(barWeightTiles.children[0]);
+        updateBarWeightTilesVisibility();
     }
 
     function selectBarWeight(tile) {
-        console.log(`Selecting bar weight: ${tile.dataset.weight}`);
+        console.log(`Selecting bar weight: ${tile.dataset[selectedUnit]}`);
         barWeightTiles.querySelectorAll('.bar-weight-tile').forEach(t => t.classList.remove('selected'));
         tile.classList.add('selected');
-        selectedBarWeight = parseFloat(tile.dataset.weight);
+        selectedBarWeight = parseFloat(tile.dataset[selectedUnit]);
         console.log(`Selected bar weight: ${selectedBarWeight}`);
+    }
+
+    function updateBarWeightTilesVisibility() {
+        barWeightTiles.querySelectorAll('.bar-weight-tile').forEach(tile => {
+            tile.querySelector('.lbs-value').style.display = selectedUnit === 'lbs' ? 'inline' : 'none';
+            tile.querySelector('.kg-value').style.display = selectedUnit === 'kg' ? 'inline' : 'none';
+        });
     }
 
     unitButtons.forEach(button => {
@@ -49,8 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectedUnit = newUnit;
                 unitButtons.forEach(btn => btn.classList.toggle('selected'));
                 unitLabels.forEach(label => label.textContent = selectedUnit);
-                createBarWeightTiles(selectedUnit);
+                updateBarWeightTilesVisibility();
                 updateFinalSideWeightSlider();
+                // Update selected bar weight based on the new unit
+                const selectedTile = barWeightTiles.querySelector('.selected');
+                if (selectedTile) {
+                    selectedBarWeight = parseFloat(selectedTile.dataset[selectedUnit]);
+                }
             }
         });
     });
@@ -88,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         finalSideWeightValue.textContent = finalSideWeightSlider.value;
     }
 
-    createBarWeightTiles('lbs');
+    createBarWeightTiles();
     updateFinalSideWeightSlider();
 
     form.addEventListener('submit', async (e) => {
