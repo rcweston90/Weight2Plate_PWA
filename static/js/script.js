@@ -156,6 +156,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dropSideWeight').textContent = `Drop Side Weight: ${data.drop_side_weight} ${data.unit}`;
         document.getElementById('remainingWeight').textContent = `Remaining Weight: ${data.remaining_weight} ${data.unit}`;
         document.getElementById('remainingWeightPerSide').textContent = `Remaining Weight Per Side: ${data.remaining_weight_per_side} ${data.unit}`;
+        
+        // Display second stage results
+        document.getElementById('secondStageWeight').textContent = `Second Stage Weight: ${data.second_stage_weight} ${data.unit}`;
+        document.getElementById('secondDropSideWeight').textContent = `Second Drop Side Weight: ${data.second_drop_side_weight} ${data.unit}`;
+        document.getElementById('secondRemainingWeight').textContent = `Second Remaining Weight: ${data.second_remaining_weight} ${data.unit}`;
+        document.getElementById('secondRemainingWeightPerSide').textContent = `Second Remaining Weight Per Side: ${data.second_remaining_weight_per_side} ${data.unit}`;
     }
 
     function displayError(message) {

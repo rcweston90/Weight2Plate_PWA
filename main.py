@@ -15,7 +15,21 @@ def calculate_drop_set(final_side_weight, bar_weight, percent_drop, unit):
         'remaining_weight': round(remaining_weight, 2),
         'remaining_weight_per_side': round(remaining_weight_per_side, 2),
         'unit': unit,
-        'bar_weight': bar_weight  # Add bar_weight to the response
+        'bar_weight': bar_weight
+    }
+
+def calculate_second_stage(remaining_weight_per_side, bar_weight, percent_drop, unit):
+    second_stage_weight = (remaining_weight_per_side * 2) + bar_weight
+    second_drop_side_weight = second_stage_weight * (percent_drop / 100)
+    second_remaining_weight = second_stage_weight - second_drop_side_weight
+    second_remaining_weight_per_side = (second_remaining_weight - bar_weight) / 2
+    
+    return {
+        'second_stage_weight': round(second_stage_weight, 2),
+        'second_drop_side_weight': round(second_drop_side_weight, 2),
+        'second_remaining_weight': round(second_remaining_weight, 2),
+        'second_remaining_weight_per_side': round(second_remaining_weight_per_side, 2),
+        'unit': unit
     }
 
 @app.route('/')
@@ -35,7 +49,10 @@ def calculate():
         if final_side_weight <= 0 or percent_drop < 0 or percent_drop > 100:
             raise ValueError("Invalid input values")
         
-        result = calculate_drop_set(final_side_weight, bar_weight, percent_drop, unit)
+        first_stage = calculate_drop_set(final_side_weight, bar_weight, percent_drop, unit)
+        second_stage = calculate_second_stage(first_stage['remaining_weight_per_side'], bar_weight, percent_drop, unit)
+        
+        result = {**first_stage, **second_stage}
         return jsonify(result)
     except (ValueError, KeyError) as e:
         return jsonify({'error': str(e)}), 400
